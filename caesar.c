@@ -13,10 +13,10 @@ int main(void)
     int key = get_int("encryptionkey :");
     int n;
 
-    s = get_string("plainword: ");
+    s = get_string("plaintext: ");
     n = strlen(s);
     char y[n];
-    printf("Cipherword: ");
+    printf("Ciphertext: ");
 
     for (int i = 0; i < n; i++)
     {
