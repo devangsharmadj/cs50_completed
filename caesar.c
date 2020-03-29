@@ -8,9 +8,11 @@
 
 
 int main(void)
+
 {
+
     string s;
-    int key = get_int("encryptionkey :");
+    int key = get_int("key: ");
     int n;
 
     s = get_string("plaintext: ");
