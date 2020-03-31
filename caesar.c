@@ -10,11 +10,18 @@ int main(int argc, string argv[])
     int key;
     if(argc == 2)
     {
-        // validate that argument is integer
-        // save it into variable
-        //key = get_int(argv[1]);
-       // printf ("< %s >< %i >",argv[0],atoi(argv[1]));
-        key = atoi(argv[1]);
+        if (atoi(argv[1])/1 == atoi(argv[1]) )
+        {
+            // validate that argument is integer
+            // save it into variable
+            //key = get_int(argv[1]);
+            // printf ("< %s >< %i >",argv[0],atoi(argv[1]));
+            key = atoi(argv[1]);
+        }
+        else
+        {
+            return 1;
+        }
     }
     else
     {
