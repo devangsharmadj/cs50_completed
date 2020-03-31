@@ -6,23 +6,30 @@
 #include<stdlib.h>
 int main(int argc, string argv[])
 {
-    string s;
+   
     int key;
     if(argc == 2)
     {
-        if ( atoi(argv[1]) > 0 )
+        string tempkey = argv[1] ;
+        for (int i = 0 ; i < strlen(tempkey) ; i ++)
         {
-            key = atoi(argv[1]);
+            
+            if ( (int)tempkey[i] > 47 && (int)tempkey[i] < 58)
+            {
+                key = atoi(argv[1]);
+            }
+            else
+            {
+                printf("Usage: ./caesar key\n");
+                return 1;
+            
+            }
         }
-        else
-        {
-            printf("Invalid Input for key\n");
-            exit(1);
-        }
+
     }
     else
     {
-        printf("Invalid number of arguments\n");
+        printf("Usage: ./caesar key\n");
         exit(1);
     }
     if (key>=26 )
@@ -34,10 +41,10 @@ int main(int argc, string argv[])
         key = (key + 0);
     }
     //int key = get_int("key: ");
-    int n;
+     
 
-    s = get_string("plaintext: ");
-    n = strlen(s);
+    string s = get_string("plaintext: ");
+   int n = strlen(s);
     char y[n];
     printf("ciphertext: ");
     
