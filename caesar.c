@@ -10,22 +10,19 @@ int main(int argc, string argv[])
     int key;
     if(argc == 2)
     {
-        if (atoi(argv[1])/1 == atoi(argv[1]) )
+        if ( atoi(argv[1]) > 0 )
         {
-            // validate that argument is integer
-            // save it into variable
-            //key = get_int(argv[1]);
-            // printf ("< %s >< %i >",argv[0],atoi(argv[1]));
             key = atoi(argv[1]);
         }
         else
         {
+            printf("Invalid Input for key\n");
             return 1;
         }
     }
     else
     {
-        // print error message
+        printf("Invalid number of arguments\n");
         return 1;
     }
     if (key>=26 )
