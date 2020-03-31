@@ -17,13 +17,13 @@ int main(int argc, string argv[])
         else
         {
             printf("Invalid Input for key\n");
-            return 1;
+            exit(1);
         }
     }
     else
     {
         printf("Invalid number of arguments\n");
-        return 1;
+        exit(1);
     }
     if (key>=26 )
     {
@@ -80,4 +80,5 @@ int main(int argc, string argv[])
         printf("%c", y[j]);
     }
     printf("\n");
+    exit(0);
 }
