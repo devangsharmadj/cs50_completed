@@ -43,12 +43,27 @@ int main(int argc, string argv[])
       int t = (int)s[i] ; 
         if (64 <  t && t < 91 )
         {
-            // Code for letters
-            y[i] = (char)((int)s[i] + key);
+            // Code for  lowercase letters
+            if (t + key > 90 )
+            {
+                y[i] = (char)(t + key -122+ 96);
+            }
+            else
+            {
+                y[i] = (char)((int)s[i] + key);
+            }
         }
         else if (96 < t && t < 123)
         {
-             y[i] = (char)((int)s[i] + key);
+            // Code for  uppercasecase letters
+            if (t + key > 122  )
+            {
+                y[i] = (char)(t + key -122+ 96);
+            }
+            else
+            {
+                y[i] = (char)((int)s[i] + key);
+            }
         }
         else
         {
