@@ -6,58 +6,62 @@
 #include<stdlib.h>
 int main(int argc, string argv[])
 {
-   
+
     int key;
-    if(argc == 2)
+    if (argc == 2)
     {
         string tempkey = argv[1] ;
         for (int i = 0 ; i < strlen(tempkey) ; i ++)
         {
-            
-            if ( (int)tempkey[i] > 47 && (int)tempkey[i] < 58)
+
+            if ((int)tempkey[i] > 47 && (int)tempkey[i] < 58)
             {
+                // Getting the right key
                 key = atoi(argv[1]);
             }
             else
             {
                 printf("Usage: ./caesar key\n");
                 return 1;
-            
+
             }
         }
 
     }
     else
     {
+        // Loop to make sure that the user puts in two things
         printf("Usage: ./caesar key\n");
         exit(1);
     }
-    if (key>=26 )
+    if (key >= 26)
     {
-        key = (key)%26;
+        // Simplifying the key
+        key = (key) % 26;
     }
     else
     {
         key = (key + 0);
     }
     //int key = get_int("key: ");
-     
+
 
     string s = get_string("plaintext: ");
-   int n = strlen(s);
+    int n = strlen(s);
     char y[n];
     printf("ciphertext: ");
-    
+
 
     for (int i = 0; i < n; i++)
     {
-      int t = (int)s[i] ; 
-        if (64 <  t && t < 91 )
+        int t = (int)s[i] ;
+        if (64 <  t && t < 91)
         {
-            // Code for  lowercase letters
-            if (t + key > 90 )
+            // Code for lowercase letters
+            if (t + key > 90)
             {
-                y[i] = (char)(t + key -122+ 96);
+                // Code for if the letters go over z
+                y[i] = (char)(t + key - 122 + 96);
             }
             else
             {
@@ -67,9 +71,10 @@ int main(int argc, string argv[])
         else if (96 < t && t < 123)
         {
             // Code for  uppercasecase letters
-            if (t + key > 122  )
+            if (t + key > 122)
             {
-                y[i] = (char)(t + key -122+ 96);
+                // Code for if the letters go over z
+                y[i] = (char)(t + key - 122 + 96);
             }
             else
             {
@@ -78,9 +83,9 @@ int main(int argc, string argv[])
         }
         else
         {
-             y[i] = s[i];
+            y[i] = s[i];
         }
-        
+
     }
     for (int j = 0; j < n ; j++)
     {
