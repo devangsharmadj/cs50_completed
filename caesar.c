@@ -33,7 +33,7 @@ int main(int argc, string argv[])
         printf("Usage: ./caesar key\n");
         exit(1);
     }
-    if (key > = 26)
+    if (key >= 26)
     {
         key = (key) % 26;
     }
