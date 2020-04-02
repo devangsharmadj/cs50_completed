@@ -57,21 +57,21 @@ int main(void)
     {
         printf("Before Grade 1\n");
     }
-    else if (grade(w,sent, l) > 16)
+    else if (grade(w, sent, l) > 16)
     {
         printf("Grade 16+\n");
     }
     else
     {
-        printf("Grade %i\n", grade(w, sent,l));
+        printf("Grade %i\n", grade(w, sent, l));
     }
 }
 
 int grade(int w, int sent, int l)
 {
 
-    float L = 100 * l / w;
-    float S = 100 * sent / w;
+    double L = 100 * l / w;
+    double S = 100 * sent / w;
     float index = .0588 * L - .296 * S - 15.8;
     int result = round(index);
     
