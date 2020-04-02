@@ -3,7 +3,7 @@
 #include <string.h>
 #include <math.h>
 
-string grade(int w, int sent, int l);
+int grade(int w, int sent, int l);
 int main(void)
 
 {
@@ -53,29 +53,29 @@ int main(void)
             w = w + 0;
         }
     }
-    printf(" %s\n", grade(w,sent,l));
+    if(grade(w, sent, l) < 1)
+    {
+        printf("Before Grade 1\n");
+    }
+    else if (grade(w,sent, l) > 16)
+    {
+        printf("Grade 16+\n");
+    }
+    else
+    {
+        printf("Grade %i\n", grade(w, sent,l));
+    }
 }
 
-string grade(int w, int sent, int l)
+int grade(int w, int sent, int l)
 {
 
     float L = 100 * l / w;
     float S = 100 * sent / w;
     float index = .0588 * L - .296 * S - 15.8;
     int result = round(index);
-    string r;
-    if (result < 1)
-    {
-        r = "Before Grade 1";
-    }
-    else if (result > 16)
-    {
-        r = "Grade 16+";
-    }
-    else
-    {
-        r = " Grade result";
-    }
-    return r;
+    
+    
+    return result;
 
 }
