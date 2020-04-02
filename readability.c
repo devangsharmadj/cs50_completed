@@ -25,12 +25,12 @@ int main(void)
             // Counting the number of Letters in the text
             l = l + 1;
         }
-        else if( t == 46 || t == 63 || t == 33)
+        else if (t == 46 || t == 63 || t == 33)
         {
             // Counting the numbers of sentences
             sent = sent + 1;
         }
-        else if(t == 32)
+        else if (t == 32)
         {
             // Counting the number of words
             w = w + 1;
