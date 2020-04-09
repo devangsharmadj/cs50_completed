@@ -6,53 +6,58 @@
 #include <string.h>
 #include <stdlib.h>
 
+#define MAX 9
+
 typedef struct
 {
-    string names;
+    string name;
     int votes;
 }
-candidates;
-
-void print(candidates t[], int candidatesCount);
-bool vote(string m, candidates t[], int candidatesCount);
+candidate;
+int candidate_count;
+candidate t[MAX];
+void print_winner(void);
+bool vote(string name);
 int main(int argc, string argv[])
 {
-    if (argc > 9 || argc < 2)
+    if (argc > MAX || argc < 2)
     {
         // Checking if command line arguments are valid
-        printf("Give voter names\n");
+        printf("Usage: ./plurality candidate names(upto 9 candidates)\n");
         exit(1);
     }
-    int candidatesCount = argc - 1;
+    candidate_count = argc - 1;
     //int g[candidatesCount];
     // string h[ candidatesCount ];
-    candidates t[candidatesCount];
     for (int i = 1 ; i < argc ; i++)
     {
-        t[i - 1].names = argv[i];
+        t[i - 1].name = argv[i];
         t[i - 1].votes = 0;
     }
     int n = get_int("Number of voters: ");
     string v[n];
-    string names;
-    string m;
+    string name;
     for (int i = 0 ; i < n ; i ++)
     {
         v[i] = get_string("Vote: ");
-        m = v[i];
-        vote(m, t,  candidatesCount);
+        name = v[i];
+        vote(name);
+        if (vote(name) == false)
+        {
+            printf("Invalid Vote. \n");
+        }
     }
-    print(t,  candidatesCount);
+    print_winner();
 }
 
-bool vote(string m, candidates t[], int candidatesCount)
+bool vote(string name)
 {
     // Checking if the vote is valid
     // Updating vote total
     int found = 0;
-    for (int j = 0; j < candidatesCount; j++)
+    for (int j = 0; j < candidate_count; j++)
     {
-        if (strcmp(m, t[j].names) == 0)
+        if (strcmp(name, t[j].name) == 0)
         {
             found = 1 ;
             t[j].votes = t[j].votes + 1;
@@ -61,33 +66,32 @@ bool vote(string m, candidates t[], int candidatesCount)
     }
     if (found == 0)
     {
-        printf("Invalid vote. \n");
+        return false;
+        
     }
-    return true;
+    else
+    {
+        return true;
+    }
 }
-void print(candidates t[], int candidatesCount)
+void print_winner(void)
 {
     // Storing the highest number of votes in a variable high
     int high = -1;
-    for (int i = 0; i <  candidatesCount ; i ++)
+    for (int i = 0; i < candidate_count ; i ++)
     {
-        if (high > t[i].votes)
-        {
-            true;
-        }
-        else if (high < t[i].votes)
+        if (high < t[i].votes)
         {
             high = t[i].votes;
         }
     }
-    for (int i = 0 ; i < candidatesCount ; i ++)
+    for (int i = 0 ; i < candidate_count ; i ++)
     {
         // If high matches the votes of the candidates
         // Print the candidates names
         if (high == t[i].votes)
         {
-            printf("%s", t[i].names);
-            printf("\n");
+            printf("%s\n", t[i].name);
         }
     }
 }
