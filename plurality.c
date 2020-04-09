@@ -106,11 +106,7 @@ void print(candidates t[], int candidatesCount)
     }
     printf("%s", s);
 
-
 }
-
-
-
 
 
 
