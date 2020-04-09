@@ -15,7 +15,7 @@ typedef struct
 }
 candidate;
 int candidate_count;
-candidate t[MAX];
+candidate candidates[MAX];
 void print_winner(void);
 bool vote(string name);
 int main(int argc, string argv[])
@@ -31,16 +31,13 @@ int main(int argc, string argv[])
     // string h[ candidatesCount ];
     for (int i = 1 ; i < argc ; i++)
     {
-        t[i - 1].name = argv[i];
-        t[i - 1].votes = 0;
+        candidates[i - 1].name = argv[i];
+        candidates[i - 1].votes = 0;
     }
     int n = get_int("Number of voters: ");
-    string v[n];
-    string name;
     for (int i = 0 ; i < n ; i ++)
     {
-        v[i] = get_string("Vote: ");
-        name = v[i];
+        string name = get_string("Vote: ");
         vote(name);
         if (vote(name) == false)
         {
@@ -57,17 +54,17 @@ bool vote(string name)
     int found = 0;
     for (int j = 0; j < candidate_count; j++)
     {
-        if (strcmp(name, t[j].name) == 0)
+        if (strcmp(name, candidates[j].name) == 0)
         {
             found = 1 ;
-            t[j].votes = t[j].votes + 1;
+            candidates[j].votes = candidates[j].votes + 1;
             break;
         }
     }
     if (found == 0)
     {
         return false;
-        
+
     }
     else
     {
@@ -80,18 +77,18 @@ void print_winner(void)
     int high = -1;
     for (int i = 0; i < candidate_count ; i ++)
     {
-        if (high < t[i].votes)
+        if (high < candidates[i].votes)
         {
-            high = t[i].votes;
+            high = candidates[i].votes;
         }
     }
     for (int i = 0 ; i < candidate_count ; i ++)
     {
         // If high matches the votes of the candidates
         // Print the candidates names
-        if (high == t[i].votes)
+        if (high == candidates[i].votes)
         {
-            printf("%s\n", t[i].name);
+            printf("%s\n", candidates[i].name);
         }
     }
 }
