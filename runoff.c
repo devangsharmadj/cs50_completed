@@ -64,6 +64,8 @@ int main(int argc, string argv[])
         {
             print_winner();
         }
+        eliminated(min);
+        
     }
     while (print_winner() == false);
 
