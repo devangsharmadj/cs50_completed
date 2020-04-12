@@ -61,6 +61,7 @@ int main(int argc, string argv[])
         tabulate();
     }
     while (print_winner() == false);
+    find_min();
 }
 
 bool vote(int voter, int rank, string name)
