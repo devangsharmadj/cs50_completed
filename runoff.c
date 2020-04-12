@@ -60,7 +60,7 @@ int main(int argc, string argv[])
     {
         tabulate();
         int min = find_min();
-        if (is_tie(min) == true)
+        if (is_tie(min))
         {
             print_winner();
         }
@@ -86,21 +86,14 @@ bool vote(int voter, int rank, string name)
             break;
         }
     }
-    if (found == 0)
-    {
-        return false;
-    }
-    else
-    {
-        return true;
-    }
+    return (found == 1);
 }
 
 void tabulate(void)
 {
     for (int i = 0; i < candidate_count; i ++)
     {
-        if (candidates[i].eliminated == false)
+        if (!candidates[i].eliminated)
         {
             for (int j = 0; j < voter_count; j ++)
             {
@@ -120,10 +113,11 @@ void tabulate(void)
                 {
                     do
                     {
-                        valid_candidate = preferences[j][found + 1];
+                        found++;
+                        valid_candidate = preferences[j][found];
+                        
                     }
-                    while (candidates[ valid_candidate].eliminated == true);
-                    valid_candidate = preferences[j][found];
+                    while (candidates[ valid_candidate].eliminated);
                     candidates[valid_candidate].votes = candidates[valid_candidate].votes + 1;
 
                 }
