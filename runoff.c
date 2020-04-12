@@ -62,7 +62,7 @@ int main(int argc, string argv[])
         find_min();
     }
     while (print_winner() == false);
-    
+
 }
 
 bool vote(int voter, int rank, string name)
@@ -124,7 +124,7 @@ void tabulate(void)
             }
         }
     }
-    print_winner();
+
 }
 
 bool print_winner(void)
@@ -164,7 +164,7 @@ int find_min(void)
     {
         if (candidates[i].eliminated == false)
         {
-           
+
             if (min > candidates[i].votes)
             {
                 min = candidates[i].votes;
@@ -187,7 +187,7 @@ bool is_tie(int min)
         if (candidates[i].votes != min)
         {
             return false;
-            
+
         }
     }
     return true;
