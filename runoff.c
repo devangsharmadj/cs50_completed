@@ -39,7 +39,12 @@ int main(int argc, string argv[])
         candidates[i - 1].votes = 0;
         candidates[i - 1].eliminated = false;
     }
-    int n = get_int("Number of voters: ");
+    int n;
+    do
+    {
+         n = get_int("Number of voters: ");
+    }
+    while (n > MAX_VOTERS);
     string name;
     voter_count = n;
     // For loop is only for the vote function
@@ -59,17 +64,28 @@ int main(int argc, string argv[])
     do
     {
         tabulate();
-        int min = find_min();
-        if (is_tie(min))
+        if(!print_winner())
         {
-            print_winner();
+            int min = find_min();
+            if (is_tie(min))
+            {
+                printf("The election is a TIE! \n");
+                break;
+            }
+            else
+            {
+                eliminate(min);
+            }
         }
-        eliminate(min);
-
+        else
+        {
+            break;
+        }
     }
-    while (print_winner() == false);
+    while (true);
 
 }
+
 
 bool vote(int voter, int rank, string name)
 {
@@ -115,57 +131,14 @@ void tabulate(void)
                     {
                         found++;
                         valid_candidate = preferences[j][found];
-                        
                     }
                     while (candidates[ valid_candidate].eliminated);
                     candidates[valid_candidate].votes = candidates[valid_candidate].votes + 1;
-
                 }
             }
         }
     }
 
-}
-
-bool print_winner(void)
-{
-    int n;
-    if (voter_count % 2 == 0)
-    {
-        n = voter_count / 2 + 1 ;
-        // Finding the majority of votes
-    }
-    else
-    {
-        n = round(voter_count / 2);
-    }
-    //Check if there is a winner and print the winner's name
-    for (int i = 0; i < candidate_count; i ++)
-    {
-        if (candidates[i].eliminated == false)
-        {
-            if (candidates[i].votes == n)
-            {
-                printf("%s\n", candidates[i].name);
-                return true;
-                exit(1);
-            }
-        }
-
-    }
-    int min = find_min();
-    if (is_tie(min) == true)
-    {
-        for (int i = 0; i < candidate_count; i ++)
-        {
-            if (candidates[i].eliminated == false)
-            {
-                printf("%s\n", candidates[i].name);
-            }
-        }
-        exit(1);
-    }
-    return false;
 }
 
 int find_min(void)
@@ -175,7 +148,7 @@ int find_min(void)
     // Going to call eliminated and is_tie function
     for (int i = 0; i < candidate_count; i ++)
     {
-        if (candidates[i].eliminated == false)
+        if (!candidates[i].eliminated)
         {
 
             if (min > candidates[i].votes)
@@ -184,7 +157,6 @@ int find_min(void)
             }
         }
     }
-    eliminate(min);
     return min;
 }
 
@@ -193,15 +165,12 @@ bool is_tie(int min)
     // Going to check if all the remaining candidates are tied
     for (int i = 0; i < candidate_count; i++)
     {
-        if (candidates[i].votes != min)
+        if (!candidates[i].eliminated && candidates[i].votes != min )
         {
             return false;
-
         }
     }
     return true;
-
-
 }
 
 void eliminate(int min)
@@ -215,6 +184,38 @@ void eliminate(int min)
         }
     }
 }
+
+bool print_winner(void)
+{
+    int n;
+    if (voter_count % 2 == 0)
+    {
+        n = voter_count / 2 + 1 ;
+        // Finding the majority of votes
+    }
+    else
+    {
+        n = ceil((float)voter_count / 2);
+    }
+    //Check if there is a winner and print the winner's name
+    for (int i = 0; i < candidate_count; i ++)
+    {
+        if (!candidates[i].eliminated)
+        {
+            if (candidates[i].votes >= n)
+            {
+                printf("Winner by majority is %s\n", candidates[i].name);
+                return true;
+                exit(1);
+            }
+        }
+
+    }
+
+
+        return false;
+}
+
 
 
 
