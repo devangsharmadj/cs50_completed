@@ -59,7 +59,11 @@ int main(int argc, string argv[])
     do
     {
         tabulate();
-        find_min();
+       int min = find_min();
+        if (is_tie(min) == true)
+        {
+            print_winner();
+        }
     }
     while (print_winner() == false);
 
@@ -152,6 +156,18 @@ bool print_winner(void)
         }
 
     }
+    int min = find_min();
+    if (is_tie(min) == true)
+    {
+        for (int i = 0; i < candidate_count; i ++)
+        {
+            if (candidates[i].eliminated == false)
+            {
+                printf("%s\n", candidates[i].name);
+            }
+        }
+        exit (1);
+    }
     return false;
 }
 
@@ -170,10 +186,6 @@ int find_min(void)
                 min = candidates[i].votes;
             }
         }
-    }
-    if (is_tie(min) == true)
-    {
-        print_winner();
     }
     eliminated(min);
     return min;
