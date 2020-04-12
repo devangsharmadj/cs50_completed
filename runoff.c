@@ -204,7 +204,7 @@ bool print_winner(void)
         {
             if (candidates[i].votes >= n)
             {
-                printf("Winner by majority is %s\n", candidates[i].name);
+                printf("%s\n", candidates[i].name);
                 return true;
                 exit(1);
             }
