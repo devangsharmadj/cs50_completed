@@ -1,3 +1,8 @@
+// @ author Devang Sharma
+// A runoff styled election program
+
+
+
 #include<cs50.h>
 #include<stdio.h>
 #include<stdlib.h>
@@ -35,6 +40,7 @@ int main(int argc, string argv[])
     // Storing names of candidates in the struct array
     for (int i = 1 ; i < argc ; i++)
     {
+        // Storing initial values in the array
         candidates[i - 1].name = argv[i];
         candidates[i - 1].votes = 0;
         candidates[i - 1].eliminated = false;
@@ -42,7 +48,8 @@ int main(int argc, string argv[])
     int n;
     do
     {
-         n = get_int("Number of voters: ");
+        // Getting valid amount of voters
+        n = get_int("Number of voters: ");
     }
     while (n > MAX_VOTERS);
     string name;
@@ -63,8 +70,9 @@ int main(int argc, string argv[])
     }
     do
     {
+        // Calling all functions
         tabulate();
-        if(!print_winner())
+        if (!print_winner())
         {
             int min = find_min();
             if (is_tie(min))
@@ -79,11 +87,11 @@ int main(int argc, string argv[])
         }
         else
         {
+            // If - else loop
             break;
         }
     }
     while (true);
-
 }
 
 
@@ -109,6 +117,7 @@ void tabulate(void)
 {
     for (int i = 0; i < candidate_count; i ++)
     {
+        // For loop for valid candidates
         if (!candidates[i].eliminated)
         {
             for (int j = 0; j < voter_count; j ++)
@@ -121,6 +130,7 @@ void tabulate(void)
         }
         else
         {
+            // For loop for invalid candidates
             for (int j = 0; j < voter_count; j ++)
             {
                 int valid_candidate;
@@ -129,6 +139,7 @@ void tabulate(void)
                 {
                     do
                     {
+                        // Traversing through the 2-D array
                         found++;
                         valid_candidate = preferences[j][found];
                     }
@@ -165,7 +176,7 @@ bool is_tie(int min)
     // Going to check if all the remaining candidates are tied
     for (int i = 0; i < candidate_count; i++)
     {
-        if (!candidates[i].eliminated && candidates[i].votes != min )
+        if (!candidates[i].eliminated && candidates[i].votes != min)
         {
             return false;
         }
@@ -204,6 +215,7 @@ bool print_winner(void)
         {
             if (candidates[i].votes >= n)
             {
+                // Printing the winner
                 printf("%s\n", candidates[i].name);
                 return true;
                 exit(1);
@@ -211,9 +223,7 @@ bool print_winner(void)
         }
 
     }
-
-
-        return false;
+    return false;
 }
 
 
