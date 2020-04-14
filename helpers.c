@@ -66,7 +66,7 @@ void sepia(int height, int width, RGBTRIPLE image[height][width])
             image[i][j].rgbtRed = r;
             image[i][j].rgbtGreen = g;
             image[i][j].rgbtBlue = b;
-            
+
         }
     }
     return;
@@ -82,16 +82,16 @@ void reflect(int height, int width, RGBTRIPLE image[height][width])
             int r = image[i][j].rgbtRed ;
             int g = image[i][j].rgbtGreen ;
             int b = image[i][j].rgbtBlue ;
-            
+
             image[i][j].rgbtRed = image[i][width - 1 - j].rgbtRed;
             image[i][j].rgbtGreen = image[i][width - 1 - j].rgbtGreen;
             image[i][j].rgbtBlue = image[i][width - 1 - j].rgbtBlue;
-            
+
             image[i][width - 1 - j].rgbtRed = r;
             image[i][width - 1 - j].rgbtGreen = g;
             image[i][width - 1 - j].rgbtBlue = b;
-            
-            
+
+
         }
     }
     return;
@@ -100,5 +100,20 @@ void reflect(int height, int width, RGBTRIPLE image[height][width])
 // Blur image
 void blur(int height, int width, RGBTRIPLE image[height][width])
 {
+    for (int i = 0; i < height; i ++)
+    {
+        for (int j = 0; j < width; j ++)
+        {
+            int corner[2][5];
+            if(image[0][0])
+            {
+                int corner[0][0] = image[0][0].rgbtRed;
+                int corner[1][0] = image[0][0].rgbtGreen;
+                int corner[2][0] = image[0][0].rgbtBlue;
+
+
+            }
+        }
+    }
     return;
 }
