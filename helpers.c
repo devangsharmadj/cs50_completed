@@ -233,11 +233,11 @@ void blur(int height, int width, RGBTRIPLE image[height][width])
             {
                 // Bottom right corner
                 float r = ((float)image[i][j].rgbtRed + (float)image[i - 1][j].rgbtRed + (float)image[i - 1][j - 1].rgbtRed +
-                            (float)image[i - 1][j + 1].rgbtRed) / 4;
+                            (float)image[i - 1][j - 1].rgbtRed) / 4;
                 float b = ((float)image[i][j].rgbtBlue + (float)image[i - 1][j].rgbtBlue + (float)image[i - 1][j - 1].rgbtBlue +
-                            (float)image[i - 1][j + 1].rgbtBlue) / 4;
+                            (float)image[i - 1][j - 1].rgbtBlue) / 4;
                 float g = ((float)image[i][j].rgbtGreen + (float)image[i - 1][j].rgbtGreen + (float)image[i - 1][j - 1].rgbtGreen +
-                            (float)image[i - 1][j + 1].rgbtGreen) / 4;
+                            (float)image[i - 1][j - 1].rgbtGreen) / 4;
                 r = round(r);
                 g = round(g);
                 b = round(b);
