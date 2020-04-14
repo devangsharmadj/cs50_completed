@@ -106,7 +106,7 @@ void blur(int height, int width, RGBTRIPLE image[height][width])
         for (int j = 0; j < width; j ++)
         {
             //Conditions for corners
-            else if (i == 0 && j == 0)
+            if (i == 0 && j == 0)
             {
                 // Top left corner
                 float r = ((float)image[i][j].rgbtRed + (float)image[i][j + 1].rgbtRed + (float)image[i + 1][j].rgbtRed +
@@ -445,15 +445,15 @@ void blur(int height, int width, RGBTRIPLE image[height][width])
             {
                 float r = ((float)image[i][j].rgbtRed + (float)image[i + 1][j].rgbtRed + (float)image[i - 1][j].rgbtRed +
                             (float)image[i][j + 1].rgbtRed + (float)image[i + 1][j + 1].rgbtRed + (float)image[i - 1][j + 1].rgbtRed +
-                            (float)image[i][j - 1].rgbtRed + (float)image[i + 1][j - 1].rgbtRed + (float)image[i - 1][j - 1]).rgbtRed / 9;
+                            (float)image[i][j - 1].rgbtRed + (float)image[i + 1][j - 1].rgbtRed + (float)image[i - 1][j - 1].rgbtRed) / 9;
 
                 float b = ((float)image[i][j].rgbtBlue + (float)image[i + 1][j].rgbtBlue + (float)image[i - 1][j].rgbtBlue +
                             (float)image[i][j + 1].rgbtBlue + (float)image[i + 1][j + 1].rgbtBlue + (float)image[i - 1][j + 1].rgbtBlue +
-                            (float)image[i][j - 1].rgbtBlue + (float)image[i + 1][j - 1].rgbtBlue + (float)image[i - 1][j - 1]).rgbtBlue / 9;
+                            (float)image[i][j - 1].rgbtBlue + (float)image[i + 1][j - 1].rgbtBlue + (float)image[i - 1][j - 1].rgbtBlue) / 9;
 
                 float g = ((float)image[i][j].rgbtGreen + (float)image[i + 1][j].rgbtGreen + (float)image[i - 1][j].rgbtGreen +
                             (float)image[i][j + 1].rgbtGreen + (float)image[i + 1][j + 1].rgbtGreen + (float)image[i - 1][j + 1].rgbtGreen +
-                            (float)image[i][j - 1].rgbtGreen + (float)image[i + 1][j - 1].rgbtGreen + (float)image[i - 1][j - 1]).rgbtGreen / 9;
+                            (float)image[i][j - 1].rgbtGreen + (float)image[i + 1][j - 1].rgbtGreen + (float)image[i - 1][j - 1].rgbtGreen) / 9;
 
                 r = round(r);
                 g = round(g);
