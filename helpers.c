@@ -100,12 +100,402 @@ void reflect(int height, int width, RGBTRIPLE image[height][width])
 // Blur image
 void blur(int height, int width, RGBTRIPLE image[height][width])
 {
+    RGBTRIPLE temp[height][width];
     for (int i = 0; i < height; i ++)
     {
         for (int j = 0; j < width; j ++)
         {
-            return;
-            
+            //Conditions for corners
+            else if (i == 0 && j == 0)
+            {
+                // Top left corner
+                float r = ((float)image[i][j].rgbtRed + (float)image[i][j + 1].rgbtRed + (float)image[i + 1][j].rgbtRed +
+                            (float)image[i + 1][j + 1].rgbtRed) / 4;
+                float b = ((float)image[i][j].rgbtBlue + (float)image[i][j + 1].rgbtBlue + (float)image[i + 1][j].rgbtBlue +
+                            (float)image[i + 1][j + 1].rgbtBlue) / 4;
+                float g = ((float)image[i][j].rgbtGreen + (float)image[i][j + 1].rgbtGreen + (float)image[i + 1][j].rgbtGreen +
+                            (float)image[i + 1][j + 1].rgbtGreen) / 4;
+            r = round(r);
+            g = round(g);
+            b = round(b);
+            if (r > 255)
+            {
+                r = 255;
+            }
+            if (g > 255)
+            {
+                g = 255;
+            }
+            if (b > 255)
+            {
+                b = 255;
+            }
+            if (r < 0)
+            {
+                r = 0;
+            }
+            if (g < 0)
+            {
+                g = 0;
+            }
+            if (b < 0)
+            {
+                b = 0;
+            }
+                // Transfering data to the temp variable
+                temp[i][j].rgbtRed = r;
+                temp[i][j].rgbtBlue = b;
+                temp[i][j].rgbtGreen = g;
+            }
+            else if (i == 0 && j == width - 1)
+            {
+                // Top right corner
+                float r = ((float)image[i][j].rgbtRed + (float)image[i][j - 2].rgbtRed + (float)image[i + 1][j].rgbtRed +
+                            (float)image[i + 1][j - 2].rgbtRed) / 4;
+                float b = ((float)image[i][j].rgbtBlue + (float)image[i][j - 2].rgbtBlue + (float)image[i + 1][j].rgbtBlue +
+                            (float)image[i + 1][j - 2].rgbtBlue) / 4;
+                float g = ((float)image[i][j].rgbtGreen + (float)image[i][j - 2].rgbtGreen + (float)image[i + 1][j].rgbtGreen +
+                            (float)image[i + 1][j - 2].rgbtGreen) / 4;
+            r = round(r);
+            g = round(g);
+            b = round(b);
+            if (r > 255)
+            {
+                r = 255;
+            }
+            if (g > 255)
+            {
+                g = 255;
+            }
+            if (b > 255)
+            {
+                b = 255;
+            }
+            if (r < 0)
+            {
+                r = 0;
+            }
+            if (g < 0)
+            {
+                g = 0;
+            }
+            if (b < 0)
+            {
+                b = 0;
+            }
+                // Transfering data to the temp variable
+                temp[i][j].rgbtRed = r;
+                temp[i][j].rgbtBlue = b;
+                temp[i][j].rgbtGreen = g;
+            }
+            else if (i == height - 1 && j == 0)
+            {
+                // Bottom left corner
+                float r = ((float)image[i][j].rgbtRed + (float)image[i - 1][j].rgbtRed + (float)image[i][j + 1].rgbtRed +
+                            (float)image[i - 1][j + 1].rgbtRed) / 4;
+                float b = ((float)image[i][j].rgbtBlue + (float)image[i - 1][j].rgbtBlue + (float)image[i][j + 1].rgbtBlue +
+                            (float)image[i - 1][j + 1].rgbtBlue) / 4;
+                float g = ((float)image[i][j].rgbtGreen + (float)image[i - 1][j].rgbtGreen + (float)image[i][j + 1].rgbtGreen +
+                            (float)image[i - 1][j + 1].rgbtGreen) / 4;
+            r = round(r);
+            g = round(g);
+            b = round(b);
+            if (r > 255)
+            {
+                r = 255;
+            }
+            if (g > 255)
+            {
+                g = 255;
+            }
+            if (b > 255)
+            {
+                b = 255;
+            }
+            if (r < 0)
+            {
+                r = 0;
+            }
+            if (g < 0)
+            {
+                g = 0;
+            }
+            if (b < 0)
+            {
+                b = 0;
+            }
+                // Transfering data to the temp variable
+                temp[i][j].rgbtRed = r;
+                temp[i][j].rgbtBlue = b;
+                temp[i][j].rgbtGreen = g;
+            }
+            else if (i == height - 1 && j == width - 1)
+            {
+                // Bottom right corner
+                float r = ((float)image[i][j].rgbtRed + (float)image[i - 1][j].rgbtRed + (float)image[i - 1][j - 1].rgbtRed +
+                            (float)image[i - 1][j + 1].rgbtRed) / 4;
+                float b = ((float)image[i][j].rgbtBlue + (float)image[i - 1][j].rgbtBlue + (float)image[i - 1][j - 1].rgbtBlue +
+                            (float)image[i - 1][j + 1].rgbtBlue) / 4;
+                float g = ((float)image[i][j].rgbtGreen + (float)image[i - 1][j].rgbtGreen + (float)image[i - 1][j - 1].rgbtGreen +
+                            (float)image[i - 1][j + 1].rgbtGreen) / 4;
+                r = round(r);
+                g = round(g);
+                b = round(b);
+                if (r > 255)
+                {
+                    r = 255;
+                }
+                if (g > 255)
+                {
+                    g = 255;
+                }
+                if (b > 255)
+                {
+                    b = 255;
+                }
+                if (r < 0)
+                {
+                    r = 0;
+                }
+                if (g < 0)
+                {
+                    g = 0;
+                }
+                if (b < 0)
+                {
+                    b = 0;
+                }
+                // Transfering data to the temp variable
+                temp[i][j].rgbtRed = r;
+                temp[i][j].rgbtBlue = b;
+                temp[i][j].rgbtGreen = g;
+            }
+
+            // Above are all the conditions for the corners
+            // Below are all the conditions for the edges
+            else if (i == 0 && (j > 0 && j < width - 1))
+            {
+                // Top edge
+                float r = ((float)image[i][j].rgbtRed + (float)image[i][j - 1].rgbtRed + (float)image[i][j + 1].rgbtRed +
+                            (float)image[i + 1][j - 1].rgbtRed + (float)image[i + 1][j].rgbtRed + (float)image[i + 1][j + 1].rgbtRed) / 6;
+                float b = ((float)image[i][j].rgbtBlue + (float)image[i][j - 1].rgbtBlue + (float)image[i][j + 1].rgbtBlue +
+                            (float)image[i + 1][j - 1].rgbtBlue + (float)image[i + 1][j].rgbtBlue + (float)image[i + 1][j + 1].rgbtBlue) / 6;
+                float g = ((float)image[i][j].rgbtGreen + (float)image[i][j - 1].rgbtGreen + (float)image[i][j + 1].rgbtGreen +
+                            (float)image[i + 1][j - 1].rgbtGreen + (float)image[i + 1][j].rgbtGreen + (float)image[i + 1][j + 1].rgbtGreen) / 6;
+                r = round(r);
+                g = round(g);
+                b = round(b);
+                if (r > 255)
+                {
+                    r = 255;
+                }
+                if (g > 255)
+                {
+                    g = 255;
+                }
+                if (b > 255)
+                {
+                    b = 255;
+                }
+                if (r < 0)
+                {
+                    r = 0;
+                }
+                if (g < 0)
+                {
+                    g = 0;
+                }
+                if (b < 0)
+                {
+                    b = 0;
+                }
+
+                // Transfering data to the temp variable
+                temp[i][j].rgbtRed = r;
+                temp[i][j].rgbtBlue = b;
+                temp[i][j].rgbtGreen = g;
+            }
+            else if (j == width - 1 && (i > 0 && i < height - 1))
+            {
+                // Right edge
+                float r = ((float)image[i][j].rgbtRed + (float)image[i + 1][j].rgbtRed + (float)image[i - 1][j].rgbtRed +
+                            (float)image[i][j - 1].rgbtRed + (float)image[i + 1][j - 1].rgbtRed + (float)image[i - 1][j - 1].rgbtRed) / 6;
+                float b = ((float)image[i][j].rgbtBlue + (float)image[i + 1][j].rgbtBlue + (float)image[i - 1][j].rgbtBlue +
+                            (float)image[i][j - 1].rgbtBlue + (float)image[i + 1][j - 1].rgbtBlue + (float)image[i - 1][j - 1].rgbtBlue) / 6;
+                float g = ((float)image[i][j].rgbtGreen + (float)image[i + 1][j].rgbtGreen + (float)image[i - 1][j].rgbtGreen +
+                            (float)image[i][j - 1].rgbtGreen + (float)image[i + 1][j - 1].rgbtGreen + (float)image[i - 1][j - 1].rgbtGreen) / 6;
+                r = round(r);
+                g = round(g);
+                b = round(b);
+                if (r > 255)
+                {
+                    r = 255;
+                }
+                if (g > 255)
+                {
+                    g = 255;
+                }
+                if (b > 255)
+                {
+                    b = 255;
+                }
+                if (r < 0)
+                {
+                    r = 0;
+                }
+                if (g < 0)
+                {
+                    g = 0;
+                }
+                if (b < 0)
+                {
+                    b = 0;
+                }
+
+                // Transfering data to the temp variable
+                temp[i][j].rgbtRed = r;
+                temp[i][j].rgbtBlue = b;
+                temp[i][j].rgbtGreen = g;
+            }
+            else if (i == height - 1 && (j > 0 && j < width - 1))
+            {
+                // Bottom edge
+                float r = ((float)image[i][j].rgbtRed + (float)image[i][j + 1].rgbtRed + (float)image[i][j - 1].rgbtRed +
+                            (float)image[i - 1][j].rgbtRed + (float)image[i - 1][j + 1].rgbtRed + (float)image[i - 1][j - 1].rgbtRed) / 6;
+                float b = ((float)image[i][j].rgbtBlue + (float)image[i][j + 1].rgbtBlue + (float)image[i][j - 1].rgbtBlue +
+                            (float)image[i - 1][j].rgbtBlue + (float)image[i - 1][j + 1].rgbtBlue + (float)image[i - 1][j - 1].rgbtBlue) / 6;
+                float g = ((float)image[i][j].rgbtGreen + (float)image[i][j + 1].rgbtGreen + (float)image[i][j - 1].rgbtGreen +
+                            (float)image[i - 1][j].rgbtGreen + (float)image[i - 1][j + 1].rgbtGreen + (float)image[i - 1][j - 1].rgbtGreen) / 6;
+                r = round(r);
+                g = round(g);
+                b = round(b);
+                if (r > 255)
+                {
+                    r = 255;
+                }
+                if (g > 255)
+                {
+                    g = 255;
+                }
+                if (b > 255)
+                {
+                    b = 255;
+                }
+                if (r < 0)
+                {
+                    r = 0;
+                }
+                if (g < 0)
+                {
+                    g = 0;
+                }
+                if (b < 0)
+                {
+                    b = 0;
+                }
+
+                // Transfering data to the temp variable
+                temp[i][j].rgbtRed = r;
+                temp[i][j].rgbtBlue = b;
+                temp[i][j].rgbtGreen = g;
+            }
+            else if (j == 0 && (i > 0 && i < height - 1))
+            {
+                 // Bottom edge
+                float r = ((float)image[i][j].rgbtRed + (float)image[i - 1][j].rgbtRed + (float)image[i + 1][j].rgbtRed +
+                            (float)image[i][j + 1].rgbtRed + (float)image[i + 1][j + 1].rgbtRed + (float)image[i - 1][j + 1].rgbtRed) / 6;
+                float b = ((float)image[i][j].rgbtBlue + (float)image[i - 1][j].rgbtBlue + (float)image[i + 1][j].rgbtBlue +
+                            (float)image[i][j + 1].rgbtBlue + (float)image[i + 1][j + 1].rgbtBlue + (float)image[i - 1][j + 1].rgbtBlue) / 6;
+                float g = ((float)image[i][j].rgbtGreen + (float)image[i - 1][j].rgbtGreen + (float)image[i + 1][j].rgbtGreen +
+                            (float)image[i][j + 1].rgbtGreen + (float)image[i + 1][j + 1].rgbtGreen + (float)image[i - 1][j + 1].rgbtGreen) / 6;
+                r = round(r);
+                g = round(g);
+                b = round(b);
+                if (r > 255)
+                {
+                    r = 255;
+                }
+                if (g > 255)
+                {
+                    g = 255;
+                }
+                if (b > 255)
+                {
+                    b = 255;
+                }
+                if (r < 0)
+                {
+                    r = 0;
+                }
+                if (g < 0)
+                {
+                    g = 0;
+                }
+                if (b < 0)
+                {
+                    b = 0;
+                }
+
+                // Transfering data to the temp variable
+                temp[i][j].rgbtRed = r;
+                temp[i][j].rgbtBlue = b;
+                temp[i][j].rgbtGreen = g;
+            }
+            else
+            {
+                float r = ((float)image[i][j].rgbtRed + (float)image[i + 1][j].rgbtRed + (float)image[i - 1][j].rgbtRed +
+                            (float)image[i][j + 1].rgbtRed + (float)image[i + 1][j + 1].rgbtRed + (float)image[i - 1][j + 1].rgbtRed +
+                            (float)image[i][j - 1].rgbtRed + (float)image[i + 1][j - 1].rgbtRed + (float)image[i - 1][j - 1]).rgbtRed / 9;
+
+                float b = ((float)image[i][j].rgbtBlue + (float)image[i + 1][j].rgbtBlue + (float)image[i - 1][j].rgbtBlue +
+                            (float)image[i][j + 1].rgbtBlue + (float)image[i + 1][j + 1].rgbtBlue + (float)image[i - 1][j + 1].rgbtBlue +
+                            (float)image[i][j - 1].rgbtBlue + (float)image[i + 1][j - 1].rgbtBlue + (float)image[i - 1][j - 1]).rgbtBlue / 9;
+
+                float g = ((float)image[i][j].rgbtGreen + (float)image[i + 1][j].rgbtGreen + (float)image[i - 1][j].rgbtGreen +
+                            (float)image[i][j + 1].rgbtGreen + (float)image[i + 1][j + 1].rgbtGreen + (float)image[i - 1][j + 1].rgbtGreen +
+                            (float)image[i][j - 1].rgbtGreen + (float)image[i + 1][j - 1].rgbtGreen + (float)image[i - 1][j - 1]).rgbtGreen / 9;
+
+                r = round(r);
+                g = round(g);
+                b = round(b);
+                if (r > 255)
+                {
+                    r = 255;
+                }
+                if (g > 255)
+                {
+                    g = 255;
+                }
+                if (b > 255)
+                {
+                    b = 255;
+                }
+                if (r < 0)
+                {
+                    r = 0;
+                }
+                if (g < 0)
+                {
+                    g = 0;
+                }
+                if (b < 0)
+                {
+                    b = 0;
+                }
+                // Assigning values to temp variable
+                temp[i][j].rgbtRed = r;
+                temp[i][j].rgbtBlue = b;
+                temp[i][j].rgbtGreen = g;
+            }
+        }
+    }
+    for (int i = 0; i < height; i ++)
+    {
+        for (int i = 0; i < width; i ++)
+        {
+            image[i][j].rgbtRed = temp[i][j].rgbtRed;
+            image[i][j].rgbtBlue = temp[i][j].rgbtRed;
+            image[i][j].rgbtGreen = image[i][j].rgbtGreen;
         }
     }
     return;
