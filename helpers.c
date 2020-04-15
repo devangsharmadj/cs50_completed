@@ -226,7 +226,7 @@ void blur(int height, int width, RGBTRIPLE image[height][width])
         {
             image[i][j].rgbtRed = temp[i][j].rgbtRed;
             image[i][j].rgbtBlue = temp[i][j].rgbtBlue;
-            image[i][j].rgbtGreen = image[i][j].rgbtGreen;
+            image[i][j].rgbtGreen = 85;// image[i][j].rgbtGreen;
            // printf("(%i,%i,%i)", temp[i][j].rgbtRed,temp[i][j].rgbtGreen,temp[i][j].rgbtBlue);
         }
     }
