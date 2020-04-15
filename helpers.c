@@ -119,9 +119,6 @@ void blur(int height, int width, RGBTRIPLE image[height][width])
                             image[i + 1][j + 1].rgbtBlue)) / 4;
                 g = ((float)(image[i][j].rgbtGreen + image[i][j + 1].rgbtGreen + image[i + 1][j].rgbtGreen +
                             image[i + 1][j + 1].rgbtGreen)) / 4;
-                printf("0,0 = (%f,%f,%f)\n",r,g,b);
-                g = 85;
-
             }
             else if (i == 0 && j == width - 1)
             {
@@ -228,6 +225,7 @@ void blur(int height, int width, RGBTRIPLE image[height][width])
             image[i][j].rgbtRed = temp[i][j].rgbtRed;
             image[i][j].rgbtBlue = temp[i][j].rgbtBlue;
             image[i][j].rgbtGreen = image[i][j].rgbtGreen;
+            printf("(%i,%i,%i)", temp[i][j].rgbtRed,temp[i][j].rgbtGreen,temp[i][j].rgbtBlue);
         }
     }
     return;
