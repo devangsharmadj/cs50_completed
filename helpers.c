@@ -101,14 +101,15 @@ void reflect(int height, int width, RGBTRIPLE image[height][width])
 void blur(int height, int width, RGBTRIPLE image[height][width])
 {
     RGBTRIPLE temp[height][width];
-    float r ;
-    float b ;
-    float g ;
+
 
     for (int i = 0; i < height; i ++)
     {
         for (int j = 0; j < width; j ++)
         {
+            float r = 0.0;
+            float b = 0.0;
+            float g = 0.0;
             //Conditions for corners
             if (i == 0 && j == 0)
             {
@@ -117,8 +118,9 @@ void blur(int height, int width, RGBTRIPLE image[height][width])
                             image[i + 1][j + 1].rgbtRed)) / 4;
                 b = ((float)(image[i][j].rgbtBlue + image[i][j + 1].rgbtBlue + image[i + 1][j].rgbtBlue +
                             image[i + 1][j + 1].rgbtBlue)) / 4;
-                g = ((float)(image[i][j].rgbtGreen + image[i][j + 1].rgbtGreen + image[i + 1][j].rgbtGreen +
-                            image[i + 1][j + 1].rgbtGreen)) / 4;
+                //g = ((float)(image[i][j].rgbtGreen + image[i][j + 1].rgbtGreen + image[i + 1][j].rgbtGreen +
+                  //          image[i + 1][j + 1].rgbtGreen)) / 4;
+                g = 85.0;
             }
             else if (i == 0 && j == width - 1)
             {
@@ -225,7 +227,7 @@ void blur(int height, int width, RGBTRIPLE image[height][width])
             image[i][j].rgbtRed = temp[i][j].rgbtRed;
             image[i][j].rgbtBlue = temp[i][j].rgbtBlue;
             image[i][j].rgbtGreen = image[i][j].rgbtGreen;
-            printf("(%i,%i,%i)", temp[i][j].rgbtRed,temp[i][j].rgbtGreen,temp[i][j].rgbtBlue);
+           // printf("(%i,%i,%i)", temp[i][j].rgbtRed,temp[i][j].rgbtGreen,temp[i][j].rgbtBlue);
         }
     }
     return;
