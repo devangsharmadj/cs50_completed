@@ -20,6 +20,7 @@ int main(int argc, char *argv[])
     
         int buffer[512];
         int size = fread(buffer, sizeof(buffer), 1, inputFilePtr);
+        printf("%i", size);
         FILE *outputFile;
         if (size == 0)
         {
@@ -29,9 +30,9 @@ int main(int argc, char *argv[])
                 {
                     fclose(outputFile);
                     sprintf(fileName, "%03i.jpg", number);
-                   
+                    printf("%s", fileName);
                     outputFile = fopen(fileName , "w");
-                    fwrite(buffer,512 , 1, outputFile);
+                    fwrite(buffer, 1, 1, outputFile);
                 }   
             }
         }
