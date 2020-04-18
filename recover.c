@@ -45,7 +45,7 @@ int main(int argc, char *argv[])
         }
         
     
-    
+    return 0;
 
 }
     // Check if file is a Jpeg
