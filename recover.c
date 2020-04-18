@@ -29,11 +29,7 @@ int main(int argc, char *argv[])
                 {
                     fclose(outputFile);
                     sprintf(fileName, "%03i.jpg", number);
-                    if (fileName == NULL)
-                    {
-                        printf("Error, something went wrong...\n");
-                        return 1;
-                    }
+                   
                     outputFile = fopen(fileName , "w");
                     fwrite(buffer,512 , 1, outputFile);
                 }   
