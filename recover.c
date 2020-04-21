@@ -16,42 +16,34 @@ int main(int argc, char *argv[])
     {
         return 1;
     }
-
     int number = -1;
     char fileName[8];
     FILE* image = NULL;
     int size = 1;
-    int temp = 0;
     do
     {
         BYTE buffer[512];
         size = fread(buffer, sizeof(buffer), 1, inputFilePtr);
         if (buffer[0] == 0xff && buffer[1] == 0xd8 && buffer[2] == 0xff && (buffer[3] & 0xf0) == 0xe0)
         {
-            temp = 1;
             number = number + 1;
-            if (image == NULL)
-            {
-                sprintf(fileName, "%03i.jpg", number);
-                image = fopen(fileName, "w");
-                fwrite(buffer, sizeof(BYTE), 512, image);
-                
-            }
             if (image != NULL)
             {
-                fclose(image);
-                sprintf(fileName, "%03i.jpg", number);
-                image = fopen(fileName, "w");
-                fwrite(buffer, sizeof(BYTE), 512, image);
+              fclose(image);
             }
+            sprintf(fileName, "%03i.jpg", number);
+            image = fopen(fileName, "w");
         }
-        else if (temp == 1)
+        if (image != NULL)
         {
             fwrite(buffer, sizeof(BYTE), 512, image);
         }
     }
     while (size == 1);
-    fclose(image);
+    if (image != NULL)
+    {
+        fclose(image);
+    }
     return 0;
      //if (buffer[i] == 0xff && buffer[i + 1] == 0xd8 && buffer[i + 2] == 0xff && (buffer[i + 3] & 0xf0) == 0xe0)
    //             {
