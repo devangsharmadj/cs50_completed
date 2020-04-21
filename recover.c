@@ -19,7 +19,7 @@ int main(int argc, char *argv[])
 
     int number = -1;
     char fileName[8];
-    FILE* image = fopen("tempfile.txt", "w");
+    FILE* image = NULL;
     int size = 1;
     int temp = 0;
     do
@@ -30,10 +30,20 @@ int main(int argc, char *argv[])
         {
             temp = 1;
             number = number + 1;
-            fclose(image);
-            sprintf(fileName, "%03i.jpg", number);
-            image = fopen(fileName, "w");
-            fwrite(buffer, sizeof(BYTE), 512, image);
+            if (image == NULL)
+            {
+                sprintf(fileName, "%03i.jpg", number);
+                image = fopen(fileName, "w");
+                fwrite(buffer, sizeof(BYTE), 512, image);
+                
+            }
+            if (image != NULL)
+            {
+                fclose(image);
+                sprintf(fileName, "%03i.jpg", number);
+                image = fopen(fileName, "w");
+                fwrite(buffer, sizeof(BYTE), 512, image);
+            }
         }
         else if (temp == 1)
         {
