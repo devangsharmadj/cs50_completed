@@ -24,6 +24,7 @@ int main(int argc, char *argv[])
     {
         BYTE buffer[512];
         size = fread(buffer, sizeof(buffer), 1, inputFilePtr);
+        //printf("_%i_<%i>", number, size);
         if (buffer[0] == 0xff && buffer[1] == 0xd8 && buffer[2] == 0xff && (buffer[3] & 0xf0) == 0xe0)
         {
             number = number + 1;
@@ -36,7 +37,7 @@ int main(int argc, char *argv[])
         }
         if (image != NULL)
         {
-            fwrite(buffer, sizeof(BYTE), 512, image);
+            fwrite(buffer, sizeof(BYTE), sizeof(buffer), image);
         }
     }
     while (size == 1);
