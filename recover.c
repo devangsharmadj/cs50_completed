@@ -19,40 +19,25 @@ int main(int argc, char *argv[])
 
     int number = -1;
     char fileName[8];
-    FILE* outputFile;
+    FILE* image = fopen("tempfile.txt", "w");
     int size = 1;
+    int temp = 0;
     do
     {
         BYTE buffer[512];
         size = fread(buffer, sizeof(buffer), 1, inputFilePtr);
-        for(int i = 0; i < 512; i ++)
+        if (buffer[0] == 0xff && buffer[1] == 0xd8 && buffer[2] == 0xff && (buffer[3] & 0xf0) == 0xe0)
         {
-            if (buffer[i] == 0xff && buffer[i + 1] == 0xd8 && buffer[i + 2] == 0xff && (buffer[i + 3] & 0xf0) == 0xe0)
-            {
-                number = number + 1;
-                printf("_%i_\n", number);
-                //do
-                //{
-                    sprintf(fileName, "%03i.jpg", number);
-                    FILE *fp = fopen(fileName, "wb");
-                    if (fp == NULL)
-                    {
-                        printf("Error. Could not open file\n");
-                        exit (1);
-                    }
-                    BYTE buffer1[512];
-                    //for (int j = i + 3; j < 512; j ++)
-                    //{
-                        fwrite(buffer,sizeof(buffer1), 1, fp);
-                        //if (buffer[i] == 0xff && buffer[i + 1] == 0xd8 && buffer[i + 2] == 0xff && (buffer[i + 3] & 0xf0) == 0xe0)
-                        //{
-                            fclose(fp);
-                            break;
-                        //}
-                    //}
-               // }
-                //while (buffer[i] != 0xff && buffer[i + 1] != 0xd8 && buffer[i + 2] != 0xff && (buffer[i + 3] & 0xf0) != 0xe0);
-            }
+            temp = 1;
+            number = number + 1;
+            fclose(image);
+            sprintf(fileName, "%03i.jpg", number);
+            image = fopen(fileName, "w");
+            fwrite(buffer, sizeof(BYTE), 512, image);
+        }
+        else if (temp == 1)
+        {
+            fwrite(buffer, sizeof(BYTE), 512, image);
         }
     }
     while (size == 1);
