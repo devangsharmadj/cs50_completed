@@ -1,3 +1,6 @@
+// @ author Devang Sharma
+// @ Recovering images from a camera's memory card
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <cs50.h>
@@ -11,7 +14,7 @@ int main(int argc, char *argv[])
         printf("Usage: ./recover file\n");
         return 1;
     }
-    FILE* inputFilePtr = fopen(argv[1], "rb");
+    FILE *inputFilePtr = fopen(argv[1], "rb");
     if (inputFilePtr == NULL)
     {
         return 1;
@@ -26,16 +29,20 @@ int main(int argc, char *argv[])
         size = fread(buffer, sizeof(buffer), 1, inputFilePtr);
         if (size == 0)
         {
+            // Checking for the last image
             break;
         }
         //printf("_%i_<%i>", number, size);
         if (buffer[0] == 0xff && buffer[1] == 0xd8 && buffer[2] == 0xff && (buffer[3] & 0xf0) == 0xe0)
         {
+            // Opening new file
             number = number + 1;
             if (image != NULL)
             {
+                // Checking and closing file
                 fclose(image);
             }
+            // Getting new file name
             sprintf(fileName, "%03i.jpg", number);
             image = fopen(fileName, "w");
         }
