@@ -6,6 +6,7 @@ int main(int argc, char *argv[])
 {
     if (argc != 2)
     {
+        printf("Usage: ./recover file\n");
         return 1;
     }
     FILE *inputFilePtr = fopen(argv[1], "r");
@@ -14,38 +15,35 @@ int main(int argc, char *argv[])
         return 1;
     }
 
-    int number = 0;
+    int number=0;
     string fileName = "File";
-    
-    
+    FILE* outputFile;
+    int size = 0;
+    do
+    {
         int buffer[512];
-        int size = fread(buffer, sizeof(buffer), 1, inputFilePtr);
-        printf("%i", size);
-        FILE *outputFile;
-        if (size == 0)
+        size = fread(buffer, sizeof(buffer), 1, inputFilePtr);
+        for(int i = 0; i < 512; i ++)
         {
-            for (int i = 0; i < 512; i ++)
-            {   
-                if (buffer[i] == 0xff && buffer[i + 1] == 0xd8 && buffer[i + 2] == 0xff && (buffer[i + 3] & 0xf0) == 0xe0)
+            if (buffer[i] == 0xff && buffer[i + 1] == 0xd8 && buffer[i + 2] == 0xff && (buffer[i + 3] & 0xf0) == 0xe0)
+            {
+                number = number + 1;
+                do
                 {
-                    fclose(outputFile);
                     sprintf(fileName, "%03i.jpg", number);
-                    printf("%s", fileName);
-                    outputFile = fopen(fileName , "w");
-                    fwrite(buffer, 1, 1, outputFile);
-                }   
+                    FILE *fp = fopen(fileName, "w");
+            
+                }
+                while (buffer[i] != 0xff && buffer[i + 1] != 0xd8 && buffer[i + 2] != 0xff && (buffer[i + 3] & 0xf0) != 0xe0);
             }
         }
-        else
-        {
-            return 1;
-        }
-        
-    
-    return 0;
-
-}
+    } 
+    while (size == 512);
+     //if (buffer[i] == 0xff && buffer[i + 1] == 0xd8 && buffer[i + 2] == 0xff && (buffer[i + 3] & 0xf0) == 0xe0)
+   //             {
     // Check if file is a Jpeg
 
+
+}
 
 
