@@ -42,6 +42,7 @@ int main(int argc, char *argv[])
     }
     while (size == 1);
     fclose(image);
+    return 0;
      //if (buffer[i] == 0xff && buffer[i + 1] == 0xd8 && buffer[i + 2] == 0xff && (buffer[i + 3] & 0xf0) == 0xe0)
    //             {
     // Check if file is a Jpeg
