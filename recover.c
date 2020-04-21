@@ -40,16 +40,16 @@ int main(int argc, char *argv[])
                         printf("Error. Could not open file\n");
                         exit (1);
                     }
-                    BYTE buffer1[1];
-                    for (int j = i + 3; j < 512; j ++)
-                    {
+                    BYTE buffer1[512];
+                    //for (int j = i + 3; j < 512; j ++)
+                    //{
                         fwrite(buffer,sizeof(buffer1), 1, fp);
-                        if (buffer[i] == 0xff && buffer[i + 1] == 0xd8 && buffer[i + 2] == 0xff && (buffer[i + 3] & 0xf0) == 0xe0)
-                        {
+                        //if (buffer[i] == 0xff && buffer[i + 1] == 0xd8 && buffer[i + 2] == 0xff && (buffer[i + 3] & 0xf0) == 0xe0)
+                        //{
                             fclose(fp);
                             break;
-                        }
-                    }
+                        //}
+                    //}
                // }
                 //while (buffer[i] != 0xff && buffer[i + 1] != 0xd8 && buffer[i + 2] != 0xff && (buffer[i + 3] & 0xf0) != 0xe0);
             }
