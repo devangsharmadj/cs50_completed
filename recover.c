@@ -22,7 +22,7 @@ int main(int argc, char *argv[])
     FILE* image = fopen("tempfile.txt", "w");
     int size = 1;
     int temp = 0;
-    for (int i = 0; i < 1024; i ++)
+    do
     {
         BYTE buffer[512];
         size = fread(buffer, sizeof(buffer), 1, inputFilePtr);
@@ -40,7 +40,8 @@ int main(int argc, char *argv[])
             fwrite(buffer, sizeof(BYTE), 512, image);
         }
     }
-
+    while (size == 1);
+    fclose(image);
      //if (buffer[i] == 0xff && buffer[i + 1] == 0xd8 && buffer[i + 2] == 0xff && (buffer[i + 3] & 0xf0) == 0xe0)
    //             {
     // Check if file is a Jpeg
