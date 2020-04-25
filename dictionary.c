@@ -63,22 +63,22 @@ unsigned int hash(const char *word)
 bool load(const char *dictionary)
 {
     // Opening dictionary
-    FILE *dictionaryp = fopen(dictionary, "r");
-    if (dictionaryp == NULL)
-    {
-        printf("Error opening dictionary\n");
-        return false;
-    }
+    //FILE *dictionaryp = fopen(dictionary, "r");
+    //if (dictionaryp == NULL)
+    //{
+      //  printf("Error opening dictionary\n");
+       // return false;
+    //}
     // Reading strings one at a time
-    int buffer;
+    //int buffer;
     char *dictionary_word = "Null";
-    do
-    {
-        buffer = fscanf(dictionaryp, "%s", dictionary_word);
-        if (buffer == EOF)
-        {
-            break;
-        }
+    //do
+    //{
+      //  buffer = fscanf(dictionaryp, "%s", dictionary_word);
+        //if (buffer == EOF)
+        //{
+          //  break;
+        //}
         // Creating a new node for each node
         node *n = malloc(sizeof(node));
         // Checking if memory allocated successfuly
@@ -97,10 +97,10 @@ bool load(const char *dictionary)
         // Insering Node into array
         n->next = table[hash_number];
         table[hash_number] = n;
-    }
-    while (buffer != EOF);
+    //}
+    //while (buffer != EOF);
     // Closing Dictionary
-    fclose(dictionaryp);
+    //fclose(dictionaryp);
     return true;
 }
 
