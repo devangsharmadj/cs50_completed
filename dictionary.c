@@ -27,7 +27,7 @@ node *table[N];
 bool check(const char *word)
 {
     // Checking if the word has been found
-    int found = 1;
+    bool found = false;
     int hash_number = hash(word);
     // Temporary variable
     node *tmp = table[hash_number];
@@ -35,7 +35,7 @@ bool check(const char *word)
     {
         if (strcasecmp(word, tmp->word) == 0)
         {
-            found = 0;
+            found = true;
             break;
         }
         tmp = tmp->next;
@@ -51,17 +51,22 @@ unsigned int hash(const char *word)
     // Hash code for uppercase letters
     if ((int)word[0] > 64 && (int)word[0] < 91)
     {
-        return ((int)word[0] + 32) % N;
+        return ((int)word[0] + 32) - 97;
     }
     else
     {
-        return (int)word[0] % N;
+        return ((int)word[0] - 97);
     }
 }
 
 // Loads dictionary into memory, returning true if successful else false
 bool load(const char *dictionary)
 {
+    // Setting null values
+    for (int i = 0; i < N; i ++)
+    {
+        table[i] = NULL;
+    }
     // Opening dictionary
     FILE *dictionaryp = fopen(dictionary, "r");
     if (dictionaryp == NULL)
@@ -71,13 +76,15 @@ bool load(const char *dictionary)
     }
     // Reading strings one at a time
     int buffer;
-    char *dictionary_word = "Null";
+    char dictionary_word[LENGTH + 1];
     do
     {
         buffer = fscanf(dictionaryp, "%s", dictionary_word);
         if (buffer == EOF)
         {
+            fclose(dictionaryp);
             break;
+            return true;
         }
         // Creating a new node for each node
         node *n = malloc(sizeof(node));
@@ -99,8 +106,6 @@ bool load(const char *dictionary)
         table[hash_number] = n;
     }
     while (buffer != EOF);
-    // Closing Dictionary
-    fclose(dictionaryp);
     return true;
 }
 
