@@ -1,11 +1,8 @@
 from cs50 import get_int
 
-while True:
+height = get_int("Height: ")
+while height > 8 or height < 1:
     height = get_int("Height: ")
-    if height > 7 or height < 0:
-        height = get_int("Height: ")
-    else:
-        break
 
 # Printing the pyramid
 for i in range(height):
