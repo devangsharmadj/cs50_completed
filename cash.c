@@ -8,7 +8,7 @@ int main(void)
     {
         float cash = get_float("Change owed: ");
     }
-    while (cash < 0)
+    while (cash < 0);
     // Converting the float to an int
     int dollars = round(cash * 100);
     int change = 0;
