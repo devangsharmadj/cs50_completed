@@ -1,34 +1,36 @@
-#include <stdio.h>
 #include <cs50.h>
+#include <stdio.h>
+#include <math.h>
 
-int main (void)
+int main(void)
 {
-    float f = get_float("Change: ");
+    float cash = get_float("Change owed: ");
+    // Converting the float to an int
+    int dollars = round(cash * 100);
     int change = 0;
     do
     {
-        if (f > .25 || f == .25)
+        if (dollars >= 25)
         {
-            change++;
-            f = f - .25;
+            dollars -= 25;
+            change ++;
         }
-        if (f > .10 || f == .10)
+        else if (dollars >= 10)
         {
-            change++;
-            f = f - .10;
+            dollars -= 10;
+            change ++;
         }
-        if (f > .05 || f == .05)
+        else if (dollars >= 5)
         {
-            change++;
-            f = f - .05;
+            dollars -= 5;
+            change ++;
         }
-        if (f > .01 || f == .01)
+        else if (dollars >= 1)
         {
-            change++;
-            f = f - .01;
+            dollars -= 1;
+            change ++;
         }
-
     }
-    while(f != 0);
+    while (dollars > 0);
     printf("%i\n", change);
 }
