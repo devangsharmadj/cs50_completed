@@ -1,3 +1,6 @@
+// @ author Devang Sharma
+// Program for giving the least amount of change 
+
 #include <cs50.h>
 #include <stdio.h>
 #include <math.h>
@@ -7,6 +10,7 @@ int main(void)
     float cash = 0.0;
     do
     {
+        // Verifying user gave valid input
         cash = get_float("Change owed: ");
     }
     while (cash < 0);
@@ -15,6 +19,7 @@ int main(void)
     int change = 0;
     do
     {
+        // Doing the required arithematic
         if (dollars >= 25)
         {
             dollars -= 25;
