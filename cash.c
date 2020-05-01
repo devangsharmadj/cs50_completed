@@ -4,9 +4,10 @@
 
 int main(void)
 {
+    float cash = 0.0;
     do
     {
-        float cash = get_float("Change owed: ");
+        cash = get_float("Change owed: ");
     }
     while (cash < 0);
     // Converting the float to an int
