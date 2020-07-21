@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" rel="stylesheet">
+        <link href="styles.css" rel="stylesheet">
+        <script>
+            let i = 0;
+            let text = 'I am Devang Sharma';
+            function type() {
+                if (i < text.length){
+                    // document..innerHTML += text.charAt(i);
+                    document.querySelector(".typed").innerHTML += text.charAt(i);
+                    i ++;
+                }
+            }
+            window.setInterval(type, 100);
+        </script>
+        <script>
+            function change(){
+                const i = document.querySelector(".bg-img");
+                console.log(i);
+                let style = getComputedStyle(i);
+
+                // var imageName = style['background-image'];
+                // var result = imageName.match("/profile.jpeg");
+                // console.log(result);
+                console.log(url("profile.jpeg"));
+                if (style['background-image'] === 'url("profile.jpeg")' ) {
+                    document.querySelector(".bg-img").style['background-image'] = 'url("profile1.jpeg")';
+                 }
+                // // var result1 = imageName.match("/profile1.jpeg");
+                // if (result1 & result1.length > 0){
+                //     document.querySelector(".bg-img").style['background-image'] = 'url("profile2.jpeg")';
+                //     return;
+                // }
+                // // var result2 = imageName.match("/profile1.jpeg");
+                // if (result2 === null){
+                //     return;
+                // }
+                // if (result2 & result2.length > 0) {
+                //     document.querySelector(".bg-img").style['background-image'] = 'url("profile.jpeg")';
+                // }
+
+            }
+            window.setInterval(change, 4000);
+        </script>
+        <title>Homepage</title>
+    </head>
+    <body>
+        <div class="bg-img">
+            <div class="container-home">
+                <ul class="topnav">
+                    <li style="list-style-type: none;">
+                        <a class="lin" href="./index.html">Home</a>
+                    </li>
+                    <li style="list-style-type: none;">
+                        <a class="lin" href="./work.html">Works</a>
+                    </li>
+                    <li style="list-style-type: none;">
+                        <a class="lin" href="./goal.html">CS</a>
+                    </li>
+                    <li style="list-style-type: none;">
+                         <a class="lin" href="./about.html">About Me</a>
+                    </li>
+                </ul>
+             </div>
+             <div class="text-content">
+                <div class="text-content">
+                    Hello,<br>
+                    <p class="typed"></p>
+                </div>
+             </div>
+        </div>
+    </body>
+</html>
