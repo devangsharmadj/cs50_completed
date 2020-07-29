@@ -1,0 +1,45 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Portfolio
+{% endblock %}
+
+{% block main %}
+    <table class="table table-striped">
+        <tr>
+            <th>Symbol</th>
+            <th>Name</th>
+            <th>Shares</th>
+            <th>Price</th>
+            <th>Total</th>
+        </tr>
+        {% set sum = cash[0]['cash'] %}
+        {% for stock in stocks %}
+            <tr>
+                <th>{{ stock['symbol'] }}</th>
+                <th>{{ stock['name'] }}</th>
+                <th>{{ stock['share'] }}</th>
+                <th>${{'%0.2f' % stock['price']| float }}</th>
+                {% set temp = stock['price'] * stock['share'] %}
+                <th>{{'%0.2f' % temp| float}}</th>
+                {% set sum = sum + temp %}
+            </tr>
+        {% endfor %}
+        <tr>
+            <th>CASH</th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th>{{'%0.2f' % cash[0]['cash']| float}}</th>
+        </tr>
+        <tr>
+            <th>TOTAL</th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th>{{'%0.2f' % s| float}}</th>
+        </tr>
+    </table>
+
+
+{% endblock %}
